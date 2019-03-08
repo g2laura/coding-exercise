@@ -12,7 +12,15 @@ class OffersController < ApplicationController
   end
 
   def create
-    render action: :index
+    @offer = Offer.new(update_params)
+    if @offer.save
+      render action: :index
+    else
+      @offer.valid?
+      render action: :new
+    end
+
+
   end
 
   def update
