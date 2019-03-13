@@ -33,5 +33,5 @@ Rules are as follows
 * When getting the quantity and price of a trade you must do so via the bid values (do not reference the offer values, if some is prepared to pay more then we let them)
 * The bid price must be equal to or greater than the offer price for a valid trade. 
 * The offer and bid must have a matching Season and Grade. The Bid price must be higher than or equal to the offer.
-* You must match the full offer quantity. A bid can be a partial match on quantity. So a Bif for a quantity of 1000 will match with an offer of 800. 
+* You must match the full offer quantity. A bid can be a partial match on quantity. So if a Bid for a quantity of 1000 will match with an offer of 800. 
 * In the case of multiple matches the offer created first should be used as the match. 
