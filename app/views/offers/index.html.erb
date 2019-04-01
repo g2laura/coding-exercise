@@ -5,7 +5,7 @@
 </p>
 
 <ul>
-  <% Offer.all.each do |o| %>
+  <% @offers.each do |o| %>
     <li>Offer <%= o.grade %>, <%= o.price %> x <%= o.quantity %> (<%= o.season %>) <%= link_to('Edit', edit_offer_path(o.id)) %></li>
   <% end %>
 </ul>
