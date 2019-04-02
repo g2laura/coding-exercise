@@ -13,7 +13,7 @@ class OffersController < ApplicationController
   end
 
   def create
-    @offer = Offer.new(update_params)
+    @offer = Offer.new(create_params)
     if @offer.save
       render action: :index
     else
@@ -37,8 +37,12 @@ class OffersController < ApplicationController
   end
 
   private
-  def update_params
+  def create_params
     params.require(:offer).permit(:grade, :season, :price, :quantity)
+  end
+
+  def update_params
+    params.require(:offer).permit(:grade, :price, :quantity)
   end
 
   def set_offers
