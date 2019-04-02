@@ -5,7 +5,10 @@
 </p>
 
 <ul>
-  <% @offers.each do |o| %>
-    <li>Offer <%= o.grade %>, <%= o.price %> x <%= o.quantity %> (<%= o.season %>) <%= link_to('Edit', edit_offer_path(o.id)) %></li>
+  <% @offers.each do |offer| %>
+    <li>
+      Offer <%= offer.grade %>, <%= offer.price %> x <%= offer.quantity %> (<%= offer.season %>)
+      <%= link_to('Edit', edit_offer_path(offer.id)) %> | <%= link_to('Delete', offer_path(offer.id), method: :delete, data: { confirm: 'Are you sure?' } ) %>
+    </li>
   <% end %>
 </ul>

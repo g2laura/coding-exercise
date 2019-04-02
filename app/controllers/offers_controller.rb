@@ -1,5 +1,5 @@
 class OffersController < ApplicationController
-  before_action :set_offers, only: %i[index create update]
+  before_action :set_offers, except: %i[new edit]
 
   def index
   end
@@ -20,12 +20,15 @@ class OffersController < ApplicationController
       @offer.valid?
       render action: :new
     end
-
-
   end
 
   def update
     Offer.find_by(id: params[:id]).update(update_params)
+    render action: :index
+  end
+
+  def destroy
+    Offer.find_by(id: params[:id]).destroy
     render action: :index
   end
 

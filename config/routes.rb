@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   root to: 'offers#index'
 
   resources :bids, except: :delete
-  resources :offers, except: :delete
+  resources :offers
 end
