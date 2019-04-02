@@ -1,6 +1,7 @@
 class OffersController < ApplicationController
+  before_action :set_offers, only: %i[index create update]
+
   def index
-    @offers = Offer.all
   end
 
   def new
@@ -31,5 +32,9 @@ class OffersController < ApplicationController
   private
   def update_params
     params.require(:offer).permit(:grade, :season, :price, :quantity)
+  end
+
+  def set_offers
+    @offers = Offer.all
   end
 end
