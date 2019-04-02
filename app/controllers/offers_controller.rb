@@ -18,13 +18,17 @@ class OffersController < ApplicationController
       render action: :index
     else
       @offer.valid?
-      render action: :new
+      render action: :new, status: :unprocessable_entity
     end
   end
 
   def update
-    Offer.find_by(id: params[:id]).update(update_params)
-    render action: :index
+    @offer = Offer.find_by(id: params[:id])
+    if @offer.update(update_params)
+      render action: :index
+    else
+      render action: :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy

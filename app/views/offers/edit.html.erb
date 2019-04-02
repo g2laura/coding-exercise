@@ -1,6 +1,19 @@
-<h1>Offers#edit</h1>
+<h1>Edit Offer</h1>
+
+<p>
+  <%= link_to('Back to index', offers_path) %>
+</p>
 
 <%= form_for @offer do |offer_form| %>
+  <% if @offer.errors.any? %>
+    There was a problem editing the offer:
+    <ul>
+      <% @offer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
   <%= offer_form.label :grade %> <%= offer_form.text_field :grade %> <br />
   <%= offer_form.label :season %><%= offer_form.text_field :season %><br />
   <%= offer_form.label :price %><%= offer_form.text_field :price %><br />

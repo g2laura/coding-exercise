@@ -17,4 +17,41 @@ RSpec.describe OffersController, type: :controller do
       expect(Offer.all.count).to eq(0)
     end
   end
+
+  describe 'PUT #update' do
+    let(:new_attributes) {
+      FactoryGirl.attributes_for(:offer,
+        season:    2018,
+        quantity:  400,
+        price:     900,
+        seller_id: 1,
+        grade:     'APW1'
+      )
+    }
+
+    it 'updates the offer' do
+      put :update, params: { id: offer.to_param, offer: new_attributes }
+      expect(response.status).to eq(200)
+      expect(assigns(:offer).season).to eq(2018)
+      expect(assigns(:offer).quantity).to eq(400)
+      expect(assigns(:offer).price).to eq(900)
+      expect(assigns(:offer).seller_id).to eq(1)
+      expect(assigns(:offer).grade).to eq('APW1')
+    end
+
+    it 'does not update if quantity is greater than 500' do
+      put :update, params: { id: offer.to_param, offer: {quantity: 600} }
+      expect(response.status).to eq(422)
+    end
+
+    it 'does not update if price is greater than 1000' do
+      put :update, params: { id: offer.to_param, offer: {price: 2000} }
+      expect(response.status).to eq(422)
+    end
+
+    it 'does not update if season is not an integer' do
+      put :update, params: { id: offer.to_param, offer: {season: 2018.1} }
+      expect(response.status).to eq(422)
+    end
+  end
 end
