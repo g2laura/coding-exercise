@@ -13,6 +13,11 @@ class Bid < ApplicationRecord
           bid = Bid.where(price: max_price).first
         end
       end
+      # Asuming that the trade will be created once the match is found
+      if Trade.is_valid?(offer, bid)
+        Trade.create(offer: offer, bid: bid)
+      end
+      # Asuming that the match will always return a bid
       bid
     end
   end

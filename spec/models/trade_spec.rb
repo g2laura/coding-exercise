@@ -18,26 +18,26 @@ RSpec.describe Trade, type: :model do
 
   describe 'is_valid?' do
     it 'verifies if the bid price is higher than or equal to the offer' do
-      expect(subject.is_valid?(offer, bid)).to be_truthy
+      expect(described_class.is_valid?(offer, bid)).to be_truthy
     end
 
     it 'returns false if the offer price is higher than the bid' do
       bid = FactoryGirl.create(:bid, season: '2017', quantity: 200, price: 60, grade: 'APW1')
-      expect(subject.is_valid?(offer, bid)).to be_falsy
+      expect(described_class.is_valid?(offer, bid)).to be_falsy
     end
 
     it 'verifies if the offer and bid have a matching Season and Grade' do
-      expect(subject.is_valid?(offer, bid)).to be_truthy
+      expect(described_class.is_valid?(offer, bid)).to be_truthy
     end
 
     it 'returns false if the offer and bid have a different Season' do
       bid = FactoryGirl.create(:bid, season: '2019', quantity: 200, price: 60, grade: 'APW1')
-      expect(subject.is_valid?(offer, bid)).to be_falsy
+      expect(described_class.is_valid?(offer, bid)).to be_falsy
     end
 
     it 'returns false if the offer and bid have a different Grade' do
       bid = FactoryGirl.create(:bid, season: '2017', quantity: 200, price: 60, grade: 'H1')
-      expect(subject.is_valid?(offer, bid)).to be_falsy
+      expect(described_class.is_valid?(offer, bid)).to be_falsy
     end
   end
 end
