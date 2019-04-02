@@ -22,3 +22,8 @@ class Bid < ApplicationRecord
     end
   end
 end
+
+# In the case of multiple matches the offer created first should be used as the match.
+#
+# Regarding that request, is not clear to me when is going to happen a scenario where find_match gets an offer array as parameter,
+# so I'm assuming is a typo and is going to retrieve the first bid created as a match.
