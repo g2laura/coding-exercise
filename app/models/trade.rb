@@ -11,6 +11,10 @@ class Trade < ApplicationRecord
   end
 
   def is_valid?(offer, bid)
-    (bid.price >= offer.price) ? true : false
+    valid_trade = (bid.price >= offer.price) ? true : false
+    if valid_trade
+      valid_trade = (offer.season == bid.season && offer.grade == bid.grade) ? true : false
+    end
+    valid_trade
   end
 end
