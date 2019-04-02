@@ -4,7 +4,14 @@ class Bid < ApplicationRecord
 
   class << self
     def find_match(offer)
-      Bid.where(price: offer.price).first
+      bid = Bid.where(price: offer.price).first
+      unless bid
+        max_price = Bid.maximum(:price)
+        if offer.price < max_price
+          bid = Bid.where(price: max_price).first
+        end
+      end
+      bid
     end
   end
 end
